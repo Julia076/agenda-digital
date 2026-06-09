@@ -1,4 +1,4 @@
-#  Agenda Digital — Gerenciamento de Contatos
+#  Agenda Digital 
 
 Aplicação web de página única (SPA) para gerenciamento de contatos, desenvolvida com **HTML5, CSS3 e JavaScript Vanilla**, integrada ao banco de dados **Supabase (PostgreSQL)**.
 
