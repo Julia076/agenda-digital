@@ -3,85 +3,82 @@
 Aplicação web de página única (SPA) para gerenciamento de contatos, desenvolvida com **HTML5, CSS3 e JavaScript Vanilla**, integrada ao banco de dados **Supabase (PostgreSQL)**.
 
 ---
+## Alunas
 
-## Tecnologias Utilizadas
-
-| Camada     | Tecnologia              |
-|------------|-------------------------|
-| Frontend   | HTML5 + CSS3 + JS Vanilla |
-| Backend/DB | Supabase (PostgreSQL)   |
-| Hospedagem | GitHub Pages / Vercel   |
+| Nome    | 
+|------------|
+| Júlia Monteiro Rodrigues  | 
+| Marielli Alves Macedo | 
 
 ---
 
-##  Como Configurar
+## 🛠️ Tecnologias Utilizadas
 
-### 1. Criar o projeto no Supabase
-1. Acesse [supabase.com](https://supabase.com) e crie uma conta
-2. Crie um novo projeto
-3. No **SQL Editor**, execute o script abaixo:
+| Camada     | Tecnologia                |
+|------------|---------------------------|
+| Frontend   | HTML5 + CSS3 + JS Vanilla |
+| Backend/DB | Supabase (PostgreSQL)     |
+| Hospedagem | GitHub Pages              |
+
+---
+
+## Configuração do Banco de Dados
+
+### 1. Criar a tabela
 
 ```sql
-CREATE TABLE CONTATO (
-  ID        SERIAL PRIMARY KEY,
-  EMAIL     VARCHAR(255),
-  NOME      VARCHAR(255),
-  TELEFONE  VARCHAR(25),
-  OBS       VARCHAR(255),
-  DTCONTATO DATE
+CREATE TABLE contato (
+  id        SERIAL PRIMARY KEY,
+  email     VARCHAR(255),
+  nome      VARCHAR(255),
+  telefone  VARCHAR(25),
+  obs       VARCHAR(255),
+  dtcontato DATE
 );
 ```
 
-### 2. Ativar RLS e criar política pública
+### 2. Ativar RLS e criar política de acesso
 
 ```sql
--- Ativar Row Level Security
 ALTER TABLE contato ENABLE ROW LEVEL SECURITY;
 
--- Permitir SELECT e INSERT públicos (via anon key)
 CREATE POLICY "acesso_publico" ON contato
-  FOR ALL
-  USING (true)
-  WITH CHECK (true);
+  FOR ALL USING (true) WITH CHECK (true);
 ```
 
-### 3. Obter as credenciais
-- Vá em **Settings → API**
-- Copie a **Project URL** e a **anon public key**
+### 3. Verificar tabelas criadas
 
-### 4. Inserir no index.html
-Abra o `index.html` e substitua:
-
-```js
-const SUPABASE_URL  = 'https://SEU_PROJECT_ID.supabase.co';
-const SUPABASE_ANON = 'SUA_ANON_KEY_AQUI';
+```sql
+SELECT table_name FROM information_schema.tables
+WHERE table_schema = 'public';
 ```
 
 ---
 
-##  Funcionalidades (CRUD Completo)
+## Funcionalidades (CRUD Completo)
 
 -  **Criar** novo contato (nome, telefone, e-mail)
 -  **Listar** todos os contatos em ordem alfabética
--  **Buscar** contato pelo nome em tempo real
+-  **Buscar** contato pelo nome
 -  **Editar** contato existente (formulário pré-preenchido)
 -  **Excluir** contato com confirmação
 
 ---
 
-##  Segurança
+## Segurança
 
-- RLS (Row Level Security) ativado no Supabase
+- RLS (Row Level Security) ativado na tabela `contato`
 - Apenas a `anon_key` pública é usada no frontend (nunca a `service_role`)
-- Domínio restrito nas configurações do projeto Supabase
+- Política de acesso controlado via Supabase Policy
 
 ---
 
 ##  Estrutura do Projeto
 
 ```
-AgendaContatos/
-└── index.html   # Aplicação completa (HTML + CSS + JS)
+agenda-digital/
+├── index.html   # Aplicação completa (HTML + CSS + JS)
+└── README.md    # Documentação do projeto
 ```
 
 ---
