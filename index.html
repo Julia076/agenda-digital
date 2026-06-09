@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Agenda Digital</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 700px; margin: 40px auto; padding: 0 20px; }
+    h1 { text-align: center; }
+    input { width: 100%; padding: 8px; margin: 5px 0 12px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
+    button { padding: 8px 16px; margin-right: 8px; cursor: pointer; }
+    .btn-salvar  { background: #2563EB; color: white; border: none; border-radius: 4px; }
+    .btn-cancelar{ background: #ccc; border: none; border-radius: 4px; }
+    .btn-editar  { background: #f0f0f0; border: none; cursor: pointer; }
+    .btn-excluir { background: #fee2e2; border: none; cursor: pointer; color: red; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th { background: #f1f5f9; padding: 10px; text-align: left; border-bottom: 2px solid #ddd; }
+    td { padding: 10px; border-bottom: 1px solid #eee; }
+    hr { margin: 24px 0; }
+  </style>
+</head>
+<body>
+
+  <h1> Agenda Digital</h1>
+
+  <h3 id="titulo-form">Novo Contato</h3>
+  <label>Nome *</label>
+  <input type="text" id="nome" placeholder="Nome completo" />
+
+  <label>Telefone</label>
+  <input type="tel" id="telefone" placeholder="(92) 99999-9999" />
+
+  <label>E-mail</label>
+  <input type="email" id="email" placeholder="email@exemplo.com" />
+
+  <button class="btn-salvar" onclick="salvar()">💾 Salvar</button>
+  <button class="btn-cancelar" onclick="cancelar()">Cancelar</button>
+
+  <hr />
+
+  <h3>Contatos Salvos</h3>
+  <input type="text" id="busca" placeholder="🔍 Buscar por nome..." oninput="buscar()" />
+
+  <table>
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Telefone</th>
+        <th>E-mail</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody id="lista"></tbody>
+  </table>
+
+  <script>
+    const URL  = 'https://wsdazbfihhrmkjprqnyf.supabase.co';
+    const KEY  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndzZGF6YmZpaGhybWtqcHJxbnlmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA5NzgzMTUsImV4cCI6MjA5NjU1NDMxNX0.o6ctzuYqg2zzFYYtu03Rp2dJL3V11POfQmbV9uITz_M';
+    const HDRS = { 'Content-Type': 'application/json', 'apikey': KEY, 'Authorization': 'Bearer ' + KEY, 'Prefer': 'return=representation' };
+
+    let editId = null;
+
+    async function carregar(filtro = '') {
+      const q = filtro ? `&nome=ilike.*${filtro}*` : '';
+      const r = await fetch(`${URL}/rest/v1/contato?select=*&order=nome.asc${q}`, { headers: HDRS });
+      const dados = await r.json();
+      const lista = document.getElementById('lista');
+      if (!dados.length) { lista.innerHTML = '<tr><td colspan="4" style="text-align:center;color:#aaa">Nenhum contato</td></tr>'; return; }
+      lista.innerHTML = dados.map(c => `
+        <tr>
+          <td>${c.nome}</td>
+          <td>${c.telefone || '—'}</td>
+          <td>${c.email || '—'}</td>
+          <td>
+            <button class="btn-editar" onclick="editar(${c.id})">✏️</button>
+            <button class="btn-excluir" onclick="excluir(${c.id}, '${c.nome}')">🗑️</button>
+          </td>
+        </tr>`).join('');
+    }
+
+    async function salvar() {
+      const nome = document.getElementById('nome').value.trim();
+      if (!nome) { alert('Nome é obrigatório!'); return; }
+      const dados = { nome, telefone: document.getElementById('telefone').value, email: document.getElementById('email').value, dtcontato: new Date().toISOString().split('T')[0] };
+      if (editId) {
+        await fetch(`${URL}/rest/v1/contato?id=eq.${editId}`, { method: 'PATCH', headers: HDRS, body: JSON.stringify(dados) });
+        alert('Contato atualizado!');
+      } else {
+        await fetch(`${URL}/rest/v1/contato`, { method: 'POST', headers: HDRS, body: JSON.stringify(dados) });
+        alert('Contato salvo!');
+      }
+      cancelar();
+      carregar();
+    }
+
+    async function editar(id) {
+      const r = await fetch(`${URL}/rest/v1/contato?id=eq.${id}&select=*`, { headers: HDRS });
+      const [c] = await r.json();
+      document.getElementById('nome').value     = c.nome || '';
+      document.getElementById('telefone').value = c.telefone || '';
+      document.getElementById('email').value    = c.email || '';
+      document.getElementById('titulo-form').textContent = '✏️ Editando Contato';
+      editId = id;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    async function excluir(id, nome) {
+      if (!confirm(`Excluir "${nome}"?`)) return;
+      await fetch(`${URL}/rest/v1/contato?id=eq.${id}`, { method: 'DELETE', headers: HDRS });
+      carregar();
+    }
+
+    function buscar() { carregar(document.getElementById('busca').value.trim()); }
+
+    function cancelar() {
+      document.getElementById('nome').value = '';
+      document.getElementById('telefone').value = '';
+      document.getElementById('email').value = '';
+      document.getElementById('titulo-form').textContent = 'Novo Contato';
+      editId = null;
+    }
+
+    carregar();
+  </script>
+</body>
+</html>
