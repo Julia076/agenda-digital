@@ -32,13 +32,13 @@
   <label>E-mail</label>
   <input type="email" id="email" placeholder="email@exemplo.com" />
 
-  <button class="btn-salvar" onclick="salvar()">💾 Salvar</button>
+  <button class="btn-salvar" onclick="salvar()"> Salvar</button>
   <button class="btn-cancelar" onclick="cancelar()">Cancelar</button>
 
   <hr />
 
   <h3>Contatos Salvos</h3>
-  <input type="text" id="busca" placeholder="🔍 Buscar por nome..." oninput="buscar()" />
+  <input type="text" id="busca" placeholder=" Buscar por nome..." oninput="buscar()" />
 
   <table>
     <thead>
@@ -71,8 +71,8 @@
           <td>${c.telefone || '—'}</td>
           <td>${c.email || '—'}</td>
           <td>
-            <button class="btn-editar" onclick="editar(${c.id})">✏️</button>
-            <button class="btn-excluir" onclick="excluir(${c.id}, '${c.nome}')">🗑️</button>
+            <button class="btn-editar" onclick="editar(${c.id})"></button>
+            <button class="btn-excluir" onclick="excluir(${c.id}, '${c.nome}')"></button>
           </td>
         </tr>`).join('');
     }
@@ -98,7 +98,7 @@
       document.getElementById('nome').value     = c.nome || '';
       document.getElementById('telefone').value = c.telefone || '';
       document.getElementById('email').value    = c.email || '';
-      document.getElementById('titulo-form').textContent = '✏️ Editando Contato';
+      document.getElementById('titulo-form').textContent = 'Editando Contato';
       editId = id;
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
