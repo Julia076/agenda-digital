@@ -12,7 +12,7 @@ Aplicação web de página única (SPA) para gerenciamento de contatos, desenvol
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 | Camada     | Tecnologia                |
 |------------|---------------------------|
@@ -22,7 +22,7 @@ Aplicação web de página única (SPA) para gerenciamento de contatos, desenvol
 
 ---
 
-## Configuração do Banco de Dados
+## Configuração do Banco de Dados 
 
 ### 1. Criar a tabela
 
@@ -78,7 +78,6 @@ WHERE table_schema = 'public';
 ```
 agenda-digital/
 ├── index.html   # Aplicação completa (HTML + CSS + JS)
-└── README.md    # Documentação do projeto
 ```
 
 ---
