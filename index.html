@@ -71,8 +71,8 @@
           <td>${c.telefone || '—'}</td>
           <td>${c.email || '—'}</td>
           <td>
-            <button class="btn-editar" onclick="editar(${c.id})"></button>
-            <button class="btn-excluir" onclick="excluir(${c.id}, '${c.nome}')"></button>
+            <button class="btn-editar" onclick="editar(${c.id})">editar</button>
+            <button class="btn-excluir" onclick="excluir(${c.id}, '${c.nome}')">excluir</button>
           </td>
         </tr>`).join('');
     }
