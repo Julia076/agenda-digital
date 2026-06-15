@@ -122,12 +122,11 @@ A aplicação está publicada e acessível em:
 
 **🔗 [https://julia076.github.io/agenda-digital/](https://julia076.github.io/agenda-digital/)**
 
-> Hospedagem via **GitHub Pages** — gratuita, segura e integrada ao repositório.
-
 ---
 
 ## 📸 Interface da Aplicação
 
-> *(Adicione aqui um print da sua aplicação funcionando)*
+> *![Tela da aplicação](screenshot/screenshot.png)
+![Tela da aplicação 2](screenshot/screenshot01.png)*
 
 ---
