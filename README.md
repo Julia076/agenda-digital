@@ -112,7 +112,7 @@ CREATE POLICY "acesso_publico" ON contato
     const KEY  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndzZGF6YmZpaGhybWtqcHJxbnlmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA5NzgzMTUsImV4cCI6MjA5NjU1NDMxNX0.o6ctzuYqg2zzFYYtu03Rp2dJL3V11POfQmbV9uITz_M';
    ```
 
->  Nenhuma dependência precisa ser instalada. A biblioteca do Supabase é carregada via fetch diretamente no HTML.
+>   Nenhuma dependência precisa ser instalada. A integração com o Supabase é feita diretamente via API REST usando fetch nativo do JavaScript.
 
 ---
 
