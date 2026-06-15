@@ -46,8 +46,8 @@ Construir um aplicativo web de **gerenciamento de contatos (Agenda Digital)**, i
 |------------|-----------|
 | **Create** | Cadastro de novo contato via formulário (Nome, Telefone, E-mail) |
 | **Read**   | Listagem de todos os contatos salvos na nuvem |
-| **Update** | Edição de contato existente — dados carregados no formulário ao clicar em ✏️ |
-| **Delete** | Exclusão do contato com confirmação antes de apagar 🗑️ |
+| **Update** | Edição de contato existente — dados carregados no formulário ao clicar em editar |
+| **Delete** | Exclusão do contato com confirmação antes de apagar |
 | **Search** | Busca por nome, filtrando a listagem dinamicamente |
 
 ---
