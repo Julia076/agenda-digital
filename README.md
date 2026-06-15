@@ -106,13 +106,13 @@ CREATE POLICY "acesso_publico" ON contato
 
 2. Abra o arquivo `index.html` diretamente no navegador **ou** utilize a extensão **Live Server** no VS Code.
 
-3. Confirme que as credenciais do Supabase em `app.js` estão preenchidas:
+3. Confirme que as credenciais do Supabase em `index.html` estão preenchidas:
    ```js
     const URL  = 'https://wsdazbfihhrmkjprqnyf.supabase.co';
     const KEY  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndzZGF6YmZpaGhybWtqcHJxbnlmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA5NzgzMTUsImV4cCI6MjA5NjU1NDMxNX0.o6ctzuYqg2zzFYYtu03Rp2dJL3V11POfQmbV9uITz_M';
    ```
 
->  Nenhuma dependência precisa ser instalada. A biblioteca do Supabase é carregada via CDN diretamente no HTML.
+>  Nenhuma dependência precisa ser instalada. A biblioteca do Supabase é carregada via fetch diretamente no HTML.
 
 ---
 
