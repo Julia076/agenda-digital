@@ -17,7 +17,7 @@
 
 | Campo              | Descrição                                    |
 |--------------------|----------------------------------------------|
-| **Disciplina**     | Desenvolvimento de Sistemas Web              |
+| **Disciplina**     | APLICAÇÃO DE BANCO DE DADOS             |
 | **Atividade**      | Prática — Integração Frontend + BaaS         |
 | **Banco de dados** | Supabase (PostgreSQL)                        |
 | **Tecnologias**    | HTML5, CSS3, JavaScript (Vanilla JS)         |
