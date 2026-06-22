@@ -24,12 +24,6 @@
  
 ---
  
-##  Objetivo
- 
-Construir um aplicativo web de **gerenciamento de contatos (Agenda Digital)**, integrando uma interface estática de cliente a um banco de dados hospedado na nuvem, exercitando o papel de desenvolvedor Full Stack iniciante com uso de BaaS (Backend as a Service).
- 
----
- 
 ##  Estrutura do Projeto
  
 ```
