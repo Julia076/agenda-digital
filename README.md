@@ -1,5 +1,3 @@
-
-Readme · MD
 # Agenda Digital 
  
 > Aplicação web de página única (SPA) para gerenciamento de contatos, integrada ao banco de dados relacional **Supabase (PostgreSQL)** na nuvem.
